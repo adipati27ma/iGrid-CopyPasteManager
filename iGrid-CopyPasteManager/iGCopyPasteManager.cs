@@ -14,10 +14,10 @@ namespace iGrid_CopyPasteManager
 
 		private iGrid fGrid;
 		private bool fCopyColumnHeaders = false;
-		private System.Windows.Forms.ContextMenuStrip fContextMenu;
-		private System.Windows.Forms.ToolStripMenuItem fMenuItemCut;
-		private System.Windows.Forms.ToolStripMenuItem fMenuItemCopy;
-		private System.Windows.Forms.ToolStripMenuItem fMenuItemPaste;
+		private ContextMenuStrip fContextMenu;
+		private ToolStripMenuItem fMenuItemCut;
+		private ToolStripMenuItem fMenuItemCopy;
+		private ToolStripMenuItem fMenuItemPaste;
 
 		#endregion
 
@@ -39,25 +39,25 @@ namespace iGrid_CopyPasteManager
 			// Grid events
 
 			fGrid.CellMouseUp += new iGCellMouseUpEventHandler(fGrid_CellMouseUp);
-			fGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(fGrid_KeyDown);
+			fGrid.KeyDown += new KeyEventHandler(fGrid_KeyDown);
 
 			// Copy/paste context menu
 
-			fContextMenu = new System.Windows.Forms.ContextMenuStrip();
-			fMenuItemCut = new System.Windows.Forms.ToolStripMenuItem();
-			fMenuItemCopy = new System.Windows.Forms.ToolStripMenuItem();
-			fMenuItemPaste = new System.Windows.Forms.ToolStripMenuItem();
+			fContextMenu = new ContextMenuStrip();
+			fMenuItemCut = new ToolStripMenuItem();
+			fMenuItemCopy = new ToolStripMenuItem();
+			fMenuItemPaste = new ToolStripMenuItem();
 
 			fMenuItemCut.Text = "Cut";
-			fMenuItemCut.Click += new System.EventHandler(fMenuItemCut_Click);
+			fMenuItemCut.Click += new EventHandler(fMenuItemCut_Click);
 
 			fMenuItemCopy.Text = "Copy";
-			fMenuItemCopy.Click += new System.EventHandler(fMenuItemCopy_Click);
+			fMenuItemCopy.Click += new EventHandler(fMenuItemCopy_Click);
 
 			fMenuItemPaste.Text = "Paste";
-			fMenuItemPaste.Click += new System.EventHandler(fMenuItemPaste_Click);
+			fMenuItemPaste.Click += new EventHandler(fMenuItemPaste_Click);
 
-			fContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripMenuItem[] {
+			fContextMenu.Items.AddRange(new ToolStripMenuItem[] {
 		fMenuItemCut, fMenuItemCopy, fMenuItemPaste});
 
 			// Extra buttons on the vertical scroll bar
@@ -354,17 +354,17 @@ namespace iGrid_CopyPasteManager
 
 		#region Context menu
 
-		private void fMenuItemCut_Click(object sender, System.EventArgs e)
+		private void fMenuItemCut_Click(object sender, EventArgs e)
 		{
 			CutToClipboard();
 		}
 
-		private void fMenuItemCopy_Click(object sender, System.EventArgs e)
+		private void fMenuItemCopy_Click(object sender, EventArgs e)
 		{
 			CopyToClipboard();
 		}
 
-		private void fMenuItemPaste_Click(object sender, System.EventArgs e)
+		private void fMenuItemPaste_Click(object sender, EventArgs e)
 		{
 			PasteFromClipboard();
 		}
@@ -410,7 +410,7 @@ namespace iGrid_CopyPasteManager
 			}
 		}
 
-		private void fGrid_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+		private void fGrid_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.Modifiers == Keys.Control && e.KeyCode == Keys.X)
 			{
